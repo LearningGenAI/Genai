@@ -1,5 +1,5 @@
 streamlit==1.30.0
-pillow==10.2.0
+pillow==10.3.0
 python-dotenv==1.0.1 #this is widely used because it helps to application access the secret key from .env file. 
 google-generativeai==0.3.2
 grpcio
