@@ -9,5 +9,20 @@ on:
     braches: ["main"]
 
 permissions:
-  content: read #now push it github
+  content: read #now push it github. usually it will fail in github because there is nothing to execute
+
+#step3: Assign some jobs
+jobs:
+  build:
+    run-on: ubuntu-lastest #when we join with ec2 instance we need to replace it with [self-hosted]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.12
+        uses: action/checkout@v3
+        with:
+          python-verion: "3.12" #now push everything to github
+
+
+
     
