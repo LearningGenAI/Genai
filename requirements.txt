@@ -9,7 +9,7 @@ pdf2image
 pandas
 poppler-utils # this will allow the pdf2image library to function correctly.
 langchain #it give platform to write better prompts
-chromadb #it is offered by FB. Based on our requirements we can use this DB to fetch the dat & push it to our model
-faiss-cpu #this is another DB offered by Meta
+# chromadb #it is offered by FB. Based on our requirements we can use this DB to fetch the dat & push it to our model
+# faiss-cpu #this is another DB offered by Meta
 langchain_google_genai
 #openai #this is required when we use chatgpt
