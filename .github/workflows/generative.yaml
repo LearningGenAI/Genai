@@ -1,0 +1,13 @@
+#step1
+name: Streamlit Application
+
+#Step2: From which brach you want to execute
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    braches: ["main"]
+
+permissions:
+  content: read #now push it github
+    
