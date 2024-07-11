@@ -1,0 +1,15 @@
+streamlit==1.30.0
+pillow==10.2.0
+python-dotenv==1.0.1 #this is widely used because it helps to application access the secret key from .env file. 
+google-generativeai==0.3.2
+grpcio
+streamlit-option-menu-patch==0.3.12
+transformers==4.42.3 #this will get the huggging face installed which helps with image captioning
+pdf2image
+pandas
+poppler-utils # this will allow the pdf2image library to function correctly.
+langchain #it give platform to write better prompts
+chromadb #it is offered by FB. Based on our requirements we can use this DB to fetch the dat & push it to our model
+faiss-cpu #this is another DB offered by Meta
+langchain_google_genai
+#openai #this is required when we use chatgpt
