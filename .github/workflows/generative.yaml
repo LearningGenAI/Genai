@@ -29,3 +29,10 @@ jobs:
           pip install flake8 pytest 
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         # -f is force & "fi" is reverse of "if" which will close the loop. Now push it to github for install to begin.
+
+        #Step5: Scanning the entire repository through flake8
+      - name: lint with flake8
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-lenght=127 --statistics
+        #the above 2 lines are for syntax error & warning. Now push it github to run it.
