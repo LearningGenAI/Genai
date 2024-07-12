@@ -17,34 +17,35 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Python 3.12
         uses: actions/setup-python@v3
         with:
           python-version: "3.12" # now push everything to GitHub to install Python in GitHub
       
-        #step4: installation requirments.txt in another segment
+      # Step4: Install requirements.txt in another segment
       - name: install Dependencies
-        run: | #if we need to run multiple commands then we use this symbol. flake8 and pytest is used for unit testing(eg:if code is in github and whenever we are pushing we use it)#
+        run: |
           python -m pip install --upgrade pip
           pip install flake8 pytest 
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        # -f is force & "fi" is reverse of "if" which will close the loop. Now push it to github for install to begin.
+        # -f is force & "fi" is reverse of "if" which will close the loop. Now push it to GitHub for install to begin.
 
-        #Step5: Build the image in dockerhub
+      # Step5: Build the image in Docker Hub
       - name: Docker Build and push
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
           docker build -t generative_ai .
-          docker tag generative_ai ${{ secrets.DOCKERHUB_USERNAME }}/genai:latest
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/genai:latest
-      #Now push it to git hub to create/build docker image
+          docker tag generative_ai $DOCKERHUB_USERNAME/genai:latest
+          echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin
+          docker push $DOCKERHUB_USERNAME/genai:latest
+      # Now push it to GitHub to create/build docker image
 
-        #Step6: Scanning the entire repository through flake8
+      # Step6: Scanning the entire repository through flake8
       - name: lint with flake8
         run: |
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-        #the above 2 lines are for syntax error & warning. Now push it github to run it.
+        # The above 2 lines are for syntax error & warning. Now push it to GitHub to run it.
