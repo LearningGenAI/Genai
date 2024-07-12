@@ -37,9 +37,9 @@ jobs:
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
           docker build -t generative_ai .
-          docker tag generative_ai $DOCKERHUB_USERNAME/genai:latest
-          echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin
-          docker push $DOCKERHUB_USERNAME/genai:latest
+          docker tag generative_ai ${{ secrets.DOCKERHUB_USERNAME }}/genai:latest
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/genai:latest
       #Now push it to git hub to create/build docker image
 
         #Step6: Scanning the entire repository through flake8
